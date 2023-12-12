@@ -9,23 +9,19 @@ function App() {
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses`)
-      .then(res => {
-        setCourses(res)
-        console.log(res)
-        console.log(res.json())
-      })
+      .then(res => res.json())
+      .then(data => setCourses(data))
       .catch(error => console.log("Error fetching and parsing data", error))
   }, [])
 
 
   return ( 
-    <></>
-  // <>
-  //     <ul> {
-  //       courses.map(course => <li> {
-  //           course.title
-  //         } </li>)}</ul >
-  //         </>
+  <>
+      <ul> {
+        courses.map(course => <li key={course.id}> {
+            course.title
+          } </li>)}</ul >
+          </>
 
         );
       }
