@@ -1,28 +1,46 @@
 import './App.css';
+import './styles/reset.css'
+import './styles/global.css'
 import {
-  useEffect,
-  useState
-} from 'react'
+  Route, Routes
+} from 'react-router-dom'
+import Header from './components/Header';
+import Courses from './components/Courses'
+import CreateCourse from './components/CreateCourse';
+import UpdateCourse from './components/UpdateCourse'
+import CourseDetail from './components/CourseDetail';
+import UserSignIn from './components/UserSignIn'
+
+
+
+
+
+
+
 
 function App() {
-  const [courses, setCourses] = useState([])
+  // const [courses, setCourses] = useState([])
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/courses`)
-      .then(res => res.json())
-      .then(data => setCourses(data))
-      .catch(error => console.log("Error fetching and parsing data", error))
-  }, [])
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/api/courses`)
+  //     .then(res => res.json())
+  //     .then(data => setCourses(data))
+  //     .catch(error => console.log("Error fetching and parsing data", error))
+  // }, [])
 
 
   return ( 
-  <>
-      <ul> {
-        courses.map(course => <li key={course.id}> {
-            course.title
-          } </li>)}</ul >
-          </>
+<>
+<Header/>
+<Routes>
+  <Route path='/' element={<Courses/>}/>
+  <Route path='/courses/create' element={<CreateCourse/>}/>
+  <Route path='courses/:id/update' element={<UpdateCourse/>}/>
+  <Route path='courses/:id' element={<CourseDetail/>}/>
+  <Route path='/signin' element={<UserSignIn/>}/>
+</Routes>
+</>
 
         );
       }
-      export default App;
+export default App;

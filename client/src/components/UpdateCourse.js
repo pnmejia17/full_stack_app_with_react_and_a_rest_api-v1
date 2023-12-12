@@ -1,24 +1,16 @@
+
+
+const UpdateCourse = () => {
+    return (
 <body>
-    <div id="root">
-        <header>
-            <div class="wrap header--flex">
-                <h1 class="header--logo"><a href="index.html">Courses</a></h1>
-                <nav>
-                    <ul class="header--signedin">
-                        <li>Welcome, Joe Smith!</li>
-                        <li><a href="sign-out.html">Sign Out</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main>
-            <div class="wrap">
-                <h2>Update Course</h2>
+    <main>
+        <div class="wrap">
+            <h2>Update Course</h2>
                 <form>
                     <div class="main--flex">
                         <div>
                             <label for="courseTitle">Course Title</label>
-                            <input id="courseTitle" name="courseTitle" type="text" value="Build a Basic Bookcase">
+                            <input id="courseTitle" name="courseTitle" type="text" value="Build a Basic Bookcase"/>
 
                             <p>By Joe Smith</p>
 
@@ -27,7 +19,7 @@
                         </div>
                         <div>
                             <label for="estimatedTime">Estimated Time</label>
-                            <input id="estimatedTime" name="estimatedTime" type="text" value="14 hours">
+                            <input id="estimatedTime" name="estimatedTime" type="text" value="14 hours"/>
 
                             <label for="materialsNeeded">Materials Needed</label>
                             <textarea id="materialsNeeded" name="materialsNeeded">* 1/2 x 3/4 inch parting strip&#13;&#13;* 1 x 2 common pine&#13;&#13;* 1 x 4 common pine&#13;&#13;* 1 x 10 common pine&#13;&#13;* 1/4 inch thick lauan plywood&#13;&#13;* Finishing Nails&#13;&#13;* Sandpaper&#13;&#13;* Wood Glue&#13;&#13;* Wood Filler&#13;&#13;* Minwax Oil Based Polyurethane</textarea>
@@ -37,5 +29,8 @@
                 </form>
             </div>
         </main>
-    </div>
 </body>
+    )
+}
+
+export default UpdateCourse
