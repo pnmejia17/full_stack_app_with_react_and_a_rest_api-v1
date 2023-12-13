@@ -10,7 +10,7 @@ import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse'
 import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn'
-
+import UserSignOut from './components/UserSignOut';
 
 
 
@@ -38,6 +38,7 @@ function App() {
   <Route path='courses/:id/update' element={<UpdateCourse/>}/>
   <Route path='courses/:id' element={<CourseDetail/>}/>
   <Route path='/signin' element={<UserSignIn/>}/>
+  <Route path='/signout' element={<UserSignOut/>}/>
 </Routes>
 </>
 

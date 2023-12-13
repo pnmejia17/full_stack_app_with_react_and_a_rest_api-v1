@@ -4,7 +4,7 @@ const CreateCourse = () => {
     return (
         <body>
             <main>
-                <div class="wrap">
+                <div className="wrap">
                     <h2>Create Course</h2>
                     <div className="validation--errors">
                     <h3>Validation Errors</h3>

@@ -1,10 +1,10 @@
 <body>
     <div id="root">
         <header>
-            <div class="wrap header--flex">
-                <h1 class="header--logo"><a href="index.html">Courses</a></h1>
+            <div className="wrap header--flex">
+                <h1 className="header--logo"><a href="index.html">Courses</a></h1>
                 <nav>
-                    <ul class="header--signedout">
+                    <ul className="header--signedout">
                         <li><a href="sign-up.html">Sign Up</a></li>
                         <li><a href="sign-in.html">Sign In</a></li>
                     </ul>
@@ -12,7 +12,7 @@
             </div>
         </header>
         <main>
-            <div class="form--centered">
+            <div className="form--centered">
                 <h2>Sign Up</h2>
                 
                 <form>
@@ -24,7 +24,7 @@
                     <input id="emailAddress" name="emailAddress" type="email" value="">
                     <label for="password">Password</label>
                     <input id="password" name="password" type="password" value="">
-                    <button class="button" type="submit">Sign Up</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+                    <button className="button" type="submit">Sign Up</button><button class="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
                 </form>
                 <p>Already have a user account? Click here to <a href="sign-in.html">sign in</a>!</p>
             </div>
