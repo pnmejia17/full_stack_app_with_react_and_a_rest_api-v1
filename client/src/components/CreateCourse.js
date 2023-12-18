@@ -1,41 +1,78 @@
-
+import { api } from "../utils/apiHelper";
+import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
 
 const CreateCourse = () => {
+    const navigate = useNavigate()
+    const title = useRef(null)
+    const description = useRef(null)
+    const estimatedTime = useRef(null)
+    const materialsNeeded = useRef(null)
+    const [errors, setErrors] = useState([])
+
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        navigate('/')
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+       
+        const newCourse = {
+            title: title.current.value,
+            description: description.current.value,
+            estimatedTime: estimatedTime.current.value, 
+            materialsNeeded: materialsNeeded.current.value, 
+        }
+
+        try {
+        const res = api(`/courses/`, 'POST', newCourse)
+            if (res.status === 201) {
+                console.log(
+                    `New Course ${newCourse.title} was added`)
+                    navigate('/')}
+            else if (res.status === 400) {
+                const errorInfo = await res.json()
+                setErrors(errorInfo.errors)
+            }
+        } catch (error) {
+            console.log("Error fetching and parsing data", error)
+                    }
+                }
+
     return (
-        <body>
-            <main>
-                <div className="wrap">
-                    <h2>Create Course</h2>
+            <div className="wrap">
+                <h2>Create Course</h2>
+                { errors.length ?
                     <div className="validation--errors">
-                    <h3>Validation Errors</h3>
+                        <h3>Validation Errors</h3>
                         <ul>
-                            <li>Please provide a value for "Title"</li>
-                            <li>Please provide a value for "Description"</li>
+                            {errors.map(error => <li>{error}</li>)}
                         </ul>
-                    </div>
-                    <form>
+                </div> : null }
+                <form onSubmit={handleSubmit}>
                         <div className="main--flex">
                             <div>
-                                <label for="courseTitle">Course Title</label>
-                                <input id="courseTitle" name="courseTitle" type="text" value=""/>
+                                <label htmlFor="courseTitle">Course Title</label>
+                                <input id="courseTitle" name="courseTitle" type="text" ref={title}/>
 
-                                <p>By Joe Smith</p>
+                                {/* <p>By {course.User.firstName} {course.User.lastName}</p> */}
 
-                                <label for="courseDescription">Course Description</label>
-                                <textarea id="courseDescription" name="courseDescription"></textarea>
+                                <label hmtlFor="courseDescription">Course Description</label>
+                                <textarea id="courseDescription" name="courseDescription" ref={description}></textarea>
                             </div>
                             <div>
-                                <label for="estimatedTime">Estimated Time</label>
-                                <input id="estimatedTime" name="estimatedTime" type="text" value=""/>
+                                <label hmtlFor="estimatedTime">Estimated Time</label>
+                                <input id="estimatedTime" name="estimatedTime" type="text" ref={estimatedTime}/>
 
-                                <label for="materialsNeeded">Materials Needed</label>
-                                <textarea id="materialsNeeded" name="materialsNeeded"></textarea>
+                                <label hmtlFor="materialsNeeded">Materials Needed</label>
+                                <textarea id="materialsNeeded" name="materialsNeeded" ref={materialsNeeded}></textarea>
                             </div>
                         </div>
-                        <button className="button" type="submit">Create Course</button><button className="button button-secondary" onclick="event.preventDefault(); location.href='index.html';">Cancel</button>
+                        <button className="button" type="submit">Create Course</button>
+                        <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                     </form>
-                </div>
-            </main>
-        </body>)}
+                </div>)}
 
 export default CreateCourse

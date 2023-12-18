@@ -1,5 +1,6 @@
 import {useState, useEffect, useRef} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
+import { api } from '../utils/apiHelper';
 
 const UpdateCourse = () => {
     const {id} = useParams();
@@ -42,7 +43,7 @@ const UpdateCourse = () => {
     
     const handleSubmit = async (e) => {
     e.preventDefault()
-    await fetch(`http://localhost:5000/api/courses/${id}`, "PUT", course)
+    await api(`/courses/${id}`, "PUT", course)
     }
 
     if (course) {
