@@ -11,6 +11,7 @@ const Header = () => {
         <ul className="header--signedout">
             <li><Link to='/signup'>Sign Up</Link></li>
             <li><Link to="/signin">Sign In</Link></li>
+            <li><Link to='signout'>Sign Out</Link></li>
         </ul>
     </nav>
 </div>

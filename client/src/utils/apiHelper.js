@@ -1,10 +1,10 @@
-export const api = (path, method = "GET", body=null, credentials=null) => {
+export const api = (path, method='GET', body=null, credentials=null) => {
     const url = 'http://localhost:5000/api' + path
 
 
     const options = {
         method, 
-        headers: {},
+        headers: {}
     }
 
     if (body) {
@@ -14,7 +14,7 @@ export const api = (path, method = "GET", body=null, credentials=null) => {
 
     if (credentials){
         const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`)
-        options.headers.Authorication = `Basic ${encodedCredentials}`
+        options.headers.Authorization = `Basic ${encodedCredentials}`
     }
 
     return fetch(url, options)
