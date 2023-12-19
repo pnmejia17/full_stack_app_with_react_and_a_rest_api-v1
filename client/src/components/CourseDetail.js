@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import {
     useEffect,
     useState
@@ -7,12 +7,14 @@ import {
     useParams,
     Link
 } from 'react-router-dom'
+import UserContext from "../context/UserContext"
 
 
 
 const CourseDetail = () => {
     const [course, setCourse] = useState(null)
     const {id} = useParams()
+    const {auth} = useContext(UserContext)
 
     useEffect(() => {
         const getCourse = async () => {
@@ -34,11 +36,14 @@ console.log(course)
 
     if (course) {
         return ( 
-        <main>
+            <>
             <div className = "actions--bar" >
                 <div className = "wrap" >
+                    {
+                        auth && auth.id === course.userId ?
+                    <>
                     <Link className = "button" to = {`/courses/${id}/update`} > Update Course </Link> 
-                    <Link className = "button" to = "/"> Delete Course </Link> 
+                    <Link className = "button" to = "/"> Delete Course </Link></> : null}
                     <Link className = "button button-secondary" to = "/" > Return to List </Link> 
                 </div> 
             </div>
@@ -63,7 +68,7 @@ console.log(course)
                     </div> 
                 </div> 
             </div> 
-        </main>)}}
+        </>)}}
 
 
 export default CourseDetail
