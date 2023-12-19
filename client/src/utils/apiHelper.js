@@ -12,6 +12,11 @@ export const api = (path, method = "GET", body=null, credentials=null) => {
         options.headers["Content-Type"] = "application/json; charset=utf-8"
     }
 
+    if (credentials){
+        const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`)
+        options.headers.Authorication = `Basic ${encodedCredentials}`
+    }
+
     return fetch(url, options)
 }
 
