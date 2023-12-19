@@ -1,16 +1,19 @@
 import { useNavigate, useSearchParams } from "react-router-dom"
 import { api } from "../utils/apiHelper"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { useRef } from "react"
+import UserContext from "../context/UserContext"
 
 
-function UserSignUp = () => {
+function UserSignUp  ()  {
     const firstName = useRef(null)
     const lastName = useRef(null)
     const emailAddress = useRef(null)
     const password = useRef(null)
     const navigate = useNavigate()
     const [errors, setErrors]= useState([])
+    const {actions} = useContext(UserContext)
 
     const handleCancel = (e) => {
         e.preventDefault();
@@ -70,3 +73,4 @@ function UserSignUp = () => {
 
 
 
+export default UserSignUp
