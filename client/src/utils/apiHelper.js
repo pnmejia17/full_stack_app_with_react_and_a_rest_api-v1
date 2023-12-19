@@ -14,3 +14,4 @@ export const api = (path, method = "GET", body=null, credentials=null) => {
 
     return fetch(url, options)
 }
+
