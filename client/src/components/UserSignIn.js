@@ -8,7 +8,7 @@ const UserSignIn = () => {
     const location  = useLocation()
     const { actions } = useContext(UserContext)
     const navigate = useNavigate()
-    const [errors, setErrors] = useState()
+    const [errors, setErrors] = useState([])
 
 
 
@@ -56,7 +56,7 @@ const UserSignIn = () => {
                     <label htmlFor="password">Password</label>
                     <input id="password" name="password" type="password" ref={password}/>
                     <button className="button" type="submit">Sign In</button>
-                    <button class="button button-secondary" onclick={handleCancel}>Cancel</button>
+                    <button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </form>
                 <p>Don't have a user account? Click here to <Link to='/signup'>Sign up</Link>!</p>
             </div>)}
