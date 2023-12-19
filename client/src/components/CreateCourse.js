@@ -57,19 +57,19 @@ const CreateCourse = () => {
                 <form onSubmit={handleSubmit}>
                         <div className="main--flex">
                             <div>
-                                <label htmlFor="courseTitle">Course Title</label>
+                                <label html="courseTitle">Course Title</label>
                                 <input id="courseTitle" name="courseTitle" type="text" ref={title}/>
 
                                 <p>By {auth.firstName} {auth.lastName}</p>
 
-                                <label hmtlFor="courseDescription">Course Description</label>
+                                <label hmtl="courseDescription">Course Description</label>
                                 <textarea id="courseDescription" name="courseDescription" ref={description}></textarea>
                             </div>
                             <div>
-                                <label hmtlFor="estimatedTime">Estimated Time</label>
+                                <label hmtl="estimatedTime">Estimated Time</label>
                                 <input id="estimatedTime" name="estimatedTime" type="text" ref={estimatedTime}/>
 
-                                <label hmtlFor="materialsNeeded">Materials Needed</label>
+                                <label hmtl="materialsNeeded">Materials Needed</label>
                                 <textarea id="materialsNeeded" name="materialsNeeded" ref={materialsNeeded}></textarea>
                             </div>
                         </div>

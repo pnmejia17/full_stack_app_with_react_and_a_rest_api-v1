@@ -40,14 +40,13 @@ console.log(course)
 // delete course
 const handleDelete = async () => {
     try {
-        const res = api(`courses/${id}`, 'DELETE', null, auth)
+        const res = api(`/courses/${id}`, 'DELETE', null, auth)
         if (res.status === 204) {
             navigate('/')
         } else if (res.status === 403) {
             throw new Error('Please sign in in order to delete a course.')}
     } catch (error) {
-            throw new Error()
-        }
+        console.log(`Error: ${error}`)        }
     }
 
 

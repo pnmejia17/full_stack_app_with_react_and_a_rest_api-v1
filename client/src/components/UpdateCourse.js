@@ -14,7 +14,7 @@ const UpdateCourse = () => {
     const {auth} = useContext(UserContext)
     const [errors, setErrors] = useState([])
 
-
+    // retrieve course to be updated
     useEffect(() => {
         const getCourse = async () => {
             try {
@@ -31,11 +31,13 @@ const UpdateCourse = () => {
         getCourse()
     }, [id, auth.id])
 
+    // navigates home if cancel button is clicked
     const handleCancel = (e) => {
         e.preventDefault();
         navigate('/')
     }
 
+    // handles changes made to form
     const handleChange = (e) => {
         e.preventDefault()
         const {name, value} = e.target
@@ -43,7 +45,8 @@ const UpdateCourse = () => {
             ...prevState, 
             [name]: value,
         }))    }
-    
+
+    // handles form submission
     const handleSubmit = async (e) => {
         e.preventDefault()
         const courseInfo = {
@@ -77,7 +80,7 @@ const UpdateCourse = () => {
                                 <p>By {auth.firstName} {auth.lastName}</p>
             
                                 <label htmlFor="description">Course Description</label>
-                                <textarea id="description" name="description" value={course.description} onChange={handleChange} > </textarea>
+                                <textarea id="description" name="description" value=' ' onChange={handleChange} > {course.description} </textarea>
                             </div>
                             <div>
                                 <label htmlFor="estimatedTime">Estimated Time</label>

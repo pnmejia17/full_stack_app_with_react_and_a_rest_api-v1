@@ -13,7 +13,7 @@ function Header() {
             <h1 className="header--logo"><Link to='/'>Courses</Link></h1>
             <nav>
                 {auth ?
-                    <ul class="header--signedin">
+                    <ul className="header--signedin">
                         <li>Welcome, {auth.firstName} {auth.lastName}!</li>
                         <br></br>
                         <Link to="/signout">Sign Out</Link></ul> :
