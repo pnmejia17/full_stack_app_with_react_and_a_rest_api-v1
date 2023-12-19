@@ -1,6 +1,7 @@
 import { api } from "../utils/apiHelper";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import UserContext from "../context/UserContext";
 
 const CreateCourse = () => {
     const navigate = useNavigate()
@@ -9,6 +10,7 @@ const CreateCourse = () => {
     const estimatedTime = useRef(null)
     const materialsNeeded = useRef(null)
     const [errors, setErrors] = useState([])
+    const {auth} = useContext(UserContext)
 
 
     const handleCancel = (e) => {
@@ -24,18 +26,19 @@ const CreateCourse = () => {
             description: description.current.value,
             estimatedTime: estimatedTime.current.value, 
             materialsNeeded: materialsNeeded.current.value, 
+            userId: (auth ? auth.id : null)
         }
 
         try {
-        const res = api(`/courses/`, 'POST', newCourse)
-            if (res.status === 201) {
-                console.log(
-                    `New Course ${newCourse.title} was added`)
-                    navigate('/')}
-            else if (res.status === 400) {
-                const errorInfo = await res.json()
-                setErrors(errorInfo.errors)
-            }
+            const res = api(`/courses`, 'POST', newCourse, auth)
+                if (res.status === 201) {
+                    console.log(`New Course ${newCourse.title} was added`)
+                        navigate('/')
+                } else if (res.status === 400) {
+                    const errorInfo = await res.json()
+                    setErrors(errorInfo.errors)
+                    console.log(errorInfo.errors)
+                }
         } catch (error) {
             console.log("Error fetching and parsing data", error)
                     }
@@ -57,7 +60,7 @@ const CreateCourse = () => {
                                 <label htmlFor="courseTitle">Course Title</label>
                                 <input id="courseTitle" name="courseTitle" type="text" ref={title}/>
 
-                                {/* <p>By {course.User.firstName} {course.User.lastName}</p> */}
+                                <p>By {auth.firstName} {auth.lastName}</p>
 
                                 <label hmtlFor="courseDescription">Course Description</label>
                                 <textarea id="courseDescription" name="courseDescription" ref={description}></textarea>

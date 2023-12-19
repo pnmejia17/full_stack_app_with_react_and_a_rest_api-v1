@@ -57,13 +57,13 @@ function UserSignUp  ()  {
                 </div> : null }    
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="firstName">First Name</label>
-                    <input id="firstName" name="firstName" type="text" value="" ref={firstName}/>
+                    <input id="firstName" name="firstName" type="text" ref={firstName}/>
                     <label htmlFor="lastName">Last Name</label>
-                    <input id="lastName" name="lastName" type="text" value="" ref={lastName}/>
+                    <input id="lastName" name="lastName" type="text" ref={lastName}/>
                     <label htmlFor="emailAddress">Email Address</label>
-                    <input id="emailAddress" name="emailAddress" type="email" value="" ref={emailAddress}/>
+                    <input id="emailAddress" name="emailAddress" type="email" ref={emailAddress}/>
                     <label htmlFor="password">Password</label>
-                    <input id="password" name="password" type="password" value="" ref={password}/>
+                    <input id="password" name="password" type="password" ref={password}/>
                     <button className="button" type="submit">Sign Up</button><button class="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </form>
                 <p>Already have a user account? Click here to <Link to='/signin'>Sign In</Link>!</p>

@@ -1,6 +1,7 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import { api } from '../utils/apiHelper';
+import UserContext from '../context/UserContext';
 
 const UpdateCourse = () => {
     const {id} = useParams();
@@ -10,12 +11,14 @@ const UpdateCourse = () => {
     const description = useRef(null)
     const estimatedTime = useRef(null)
     const materialsNeeded = useRef(null)
+    const {auth} = useContext(UserContext)
+    const [errors, setErrors] = useState([])
 
 
     useEffect(() => {
         const getCourse = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/courses/${id}`)
+                const res = await api(`/courses/${id}`, 'GET')
                 if (res.status === 200) {
                     const fetchedData = await res.json()
                     console.log(fetchedData.course)
@@ -26,7 +29,7 @@ const UpdateCourse = () => {
                 }
             }
         getCourse()
-    }, [id])
+    }, [id, auth.id])
 
     const handleCancel = (e) => {
         e.preventDefault();
@@ -42,21 +45,36 @@ const UpdateCourse = () => {
         }))    }
     
     const handleSubmit = async (e) => {
-    e.preventDefault()
-    await api(`/courses/${id}`, "PUT", course)
-    }
+        e.preventDefault()
+        const courseInfo = {
+            title: title.current.value,
+            description: description.current.value,
+            estimatedTime: estimatedTime.current.value,
+            materialsNeeded: materialsNeeded.current.value,
+            userId: auth.id
+        }
+        console.log(courseInfo)
+        const res = await api(`/courses/${id}`, "PUT", courseInfo, auth)
+        }
 
     if (course) {
         return (
             <div className="wrap">
                 <h2>Update Course</h2>
+                { errors.length ?
+                    <div className="validation--errors">
+                        <h3>Validation Errors</h3>
+                        <ul>
+                            {errors.map(error => <li>{error}</li>)}
+                        </ul>
+                </div> : null }
                     <form onSubmit={handleSubmit}>
                         <div className="main--flex">
                             <div>
                                 <label htmlFor="title">Course Title</label>
                                 <input id="title" name="title" type="text" value={course.title} onChange={handleChange}/>
             
-                                {/* <p>By {course.User.firstName} {course.User.lastName}</p> */}
+                                <p>By {auth.firstName} {auth.lastName}</p>
             
                                 <label htmlFor="description">Course Description</label>
                                 <textarea id="description" name="description" value={course.description} onChange={handleChange} > </textarea>

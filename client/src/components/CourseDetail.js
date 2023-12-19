@@ -5,22 +5,24 @@ import {
 } from "react"
 import {
     useParams,
-    Link
+    Link, useNavigate
 } from 'react-router-dom'
 import UserContext from "../context/UserContext"
 import ReactMarkDown from 'react-markdown'
+import { api } from "../utils/apiHelper"
 
 
 
 const CourseDetail = () => {
     const [course, setCourse] = useState(null)
-    const {id} = useParams()
+    const {id} = useParams() //course ID from URL
     const {auth} = useContext(UserContext)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getCourse = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/courses/${id}`)
+                const res = await api(`/courses/${id}`, 'GET')
                 if (res.status === 200) {
                     const fetchedData = await res.json()
                     console.log(fetchedData.course)
@@ -35,6 +37,20 @@ const CourseDetail = () => {
 
 console.log(course)
 
+// delete course
+const handleDelete = async () => {
+    try {
+        const res = api(`courses/${id}`, 'DELETE', null, auth)
+        if (res.status === 204) {
+            navigate('/')
+        } else if (res.status === 403) {
+            throw new Error('Please sign in in order to delete a course.')}
+    } catch (error) {
+            throw new Error()
+        }
+    }
+
+
     if (course) {
         return ( 
             <>
@@ -42,9 +58,11 @@ console.log(course)
                 <div className = "wrap" >
                     {
                         auth && auth.id === course.userId ?
-                    <>
-                    <Link className = "button" to = {`/courses/${id}/update`} > Update Course </Link> 
-                    <Link className = "button" to = "/"> Delete Course </Link></> : null}
+                            <>
+                                <Link className = "button" to={`/courses/${id}/update`}> Update Course </Link> 
+                                <button className = "button" onClick={handleDelete}> Delete Course</button>
+                            </> : null
+                    }
                     <Link className = "button button-secondary" to = "/" > Return to List </Link> 
                 </div> 
             </div>
