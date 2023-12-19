@@ -75,19 +75,19 @@ const UpdateCourse = () => {
                         <div className="main--flex">
                             <div>
                                 <label htmlFor="title">Course Title</label>
-                                <input id="title" name="title" type="text" value={course.title} onChange={handleChange}/>
+                                <input id="title" name="title" type="text" value={course.title} onChange={handleChange} ref={title}/>
             
                                 <p>By {auth.firstName} {auth.lastName}</p>
             
                                 <label htmlFor="description">Course Description</label>
-                                <textarea id="description" name="description" value=' ' onChange={handleChange} > {course.description} </textarea>
+                                <textarea id="description" name="description" value={course.description} onChange={handleChange} ref={description}>  </textarea>
                             </div>
                             <div>
                                 <label htmlFor="estimatedTime">Estimated Time</label>
-                                <input id="estimatedTime" name="estimatedTime" type="text" value={course.estimatedTime} onChange={handleChange}/>
+                                <input id="estimatedTime" name="estimatedTime" type="text" value={course.estimatedTime} onChange={handleChange} ref={estimatedTime}/>
             
                                 <label htmlFor="materialsNeeded">Materials Needed</label>
-                                <textarea id="materialsNeeded" name="materialsNeeded" value={course.materialsNeeded} onChange={handleChange}></textarea>
+                                <textarea id="materialsNeeded" name="materialsNeeded" value={course.materialsNeeded} onChange={handleChange} ref={materialsNeeded}></textarea>
                             </div>
                         </div>
                         <button className="button" type="submit">Update Course</button>
