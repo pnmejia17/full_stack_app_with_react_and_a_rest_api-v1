@@ -30,7 +30,7 @@ const CreateCourse = () => {
         }
 
         try {
-            const res = api(`/courses`, 'POST', newCourse, auth)
+            const res = await api(`/courses`, 'POST', newCourse, auth)
                 if (res.status === 201) {
                     console.log(`New Course ${newCourse.title} was added`)
                         navigate('/')
@@ -51,7 +51,7 @@ const CreateCourse = () => {
                     <div className="validation--errors">
                         <h3>Validation Errors</h3>
                         <ul>
-                            {errors.map(error => <li>{error}</li>)}
+                            {errors.map(error => <li key={error}>{error}</li>)}
                         </ul>
                 </div> : null }
                 <form onSubmit={handleSubmit}>

@@ -4,7 +4,7 @@ import UserContext from "../context/UserContext"
 
 const UserSignIn = () => {
     const emailAddress = useRef(null)
-    const password = useState(null)
+    const password = useRef(null)
     const location  = useLocation()
     const { actions } = useContext(UserContext)
     const navigate = useNavigate()
