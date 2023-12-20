@@ -20,16 +20,8 @@ import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
-  // const [courses, setCourses] = useState([])
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/api/courses`)
-  //     .then(res => res.json())
-  //     .then(data => setCourses(data))
-  //     .catch(error => console.log("Error fetching and parsing data", error))
-  // }, [])
-
-
+// Route components 
   return ( 
 <>
 <Header/>
