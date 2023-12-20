@@ -55,7 +55,7 @@ function UserSignUp  ()  {
                 <div className="validation--errors">
                         <h3>Validation Errors</h3>
                         <ul>
-                            {errors.map(error => <li>{error}</li>)}
+                            {errors.map(error => <li key={error}>{error}</li>)}
                         </ul>
                 </div> : null }    
                 <form onSubmit={handleSubmit}>
@@ -67,7 +67,7 @@ function UserSignUp  ()  {
                     <input id="emailAddress" name="emailAddress" type="email" ref={emailAddress}/>
                     <label htmlFor="password">Password</label>
                     <input id="password" name="password" type="password" ref={password}/>
-                    <button className="button" type="submit">Sign Up</button><button class="button button-secondary" onClick={handleCancel}>Cancel</button>
+                    <button className="button" type="submit">Sign Up</button><button className="button button-secondary" onClick={handleCancel}>Cancel</button>
                 </form>
                 <p>Already have a user account? Click here to <Link to='/signin'>Sign In</Link>!</p>
             </div>
