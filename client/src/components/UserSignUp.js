@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { api } from "../utils/apiHelper"
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
@@ -28,6 +28,9 @@ function UserSignUp  ()  {
             emailAddress: emailAddress.current.value,
             password: password.current.value,
         }
+    
+    // uses user information specified above to post it
+    // users route and create a new user
 
     try {
         const res = await api('/users', 'POST', user)

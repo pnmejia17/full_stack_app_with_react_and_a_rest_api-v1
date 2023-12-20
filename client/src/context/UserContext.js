@@ -11,7 +11,7 @@ const UserContext = createContext(null)
 export const UserProvider = (props) => {
     const [auth, setAuth] = useState(null)
     
-    
+    // signs user in
     const signIn = async (credentials) => {
         const res = await api('/users', 'GET', null, credentials)
 
@@ -29,6 +29,7 @@ export const UserProvider = (props) => {
         }
     }
 
+    //signs user out
     const signOut = () => {
         setAuth(null)
     }

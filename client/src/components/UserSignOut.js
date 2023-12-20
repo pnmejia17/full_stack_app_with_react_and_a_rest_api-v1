@@ -6,6 +6,8 @@ import { Navigate } from "react-router-dom"
 
 
 const UserSignOut = () => {
+    // signs user out and navigates them to the homepage
+
     const {actions} = useContext(UserContext)
 
     useEffect(() => actions.signOut)
