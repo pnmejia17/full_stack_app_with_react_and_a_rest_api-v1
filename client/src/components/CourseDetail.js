@@ -20,6 +20,7 @@ const CourseDetail = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        //gets course data from api
         const getCourse = async () => {
             try {
                 const res = await api(`/courses/${id}`, 'GET')
@@ -37,7 +38,7 @@ const CourseDetail = () => {
 
 console.log(course)
 
-// delete course
+// delete course if user is authorized
 const handleDelete = async () => {
     try {
         const res = api(`/courses/${id}`, 'DELETE', null, auth)

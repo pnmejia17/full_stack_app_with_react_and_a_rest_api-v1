@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom'
 const Courses = () => {
     const [courses, setCourses] = useState([])
 
+    // retrieve all courses and set them to courses using 
+    // useState React Hook
+    
     useEffect(() => {
       fetch(`http://localhost:5000/api/courses`)
         .then(res => res.json())

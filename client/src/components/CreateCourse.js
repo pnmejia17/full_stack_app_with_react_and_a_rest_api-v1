@@ -12,11 +12,13 @@ const CreateCourse = () => {
     const [errors, setErrors] = useState([])
     const {auth} = useContext(UserContext)
 
-
+    //handles cancel 
     const handleCancel = (e) => {
         e.preventDefault();
         navigate('/')
     }
+
+    //handles form submission if user is authorized
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -29,6 +31,7 @@ const CreateCourse = () => {
             userId: (auth ? auth.id : null)
         }
 
+        //POST api call to backend to post new course if there are no errors
         try {
             const res = await api(`/courses`, 'POST', newCourse, auth)
                 if (res.status === 201) {

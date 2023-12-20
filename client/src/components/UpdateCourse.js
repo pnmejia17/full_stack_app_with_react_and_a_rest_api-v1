@@ -15,6 +15,8 @@ const UpdateCourse = () => {
     const [errors, setErrors] = useState([])
 
     // retrieve course to be updated
+    // set as course using React Hook useState
+    // or set error using React Hook useState
     useEffect(() => {
         const getCourse = async () => {
             try {

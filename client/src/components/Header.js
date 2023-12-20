@@ -5,6 +5,7 @@ import UserContext from '../context/UserContext'
 
 
 function Header() {
+    // if user is authenticated, display user's name in header
     const {auth} =useContext(UserContext)
 
     return (

@@ -14,6 +14,7 @@ const UserSignIn = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        // records the user's selected route
         let from = '/'
         if (location.state){
             from = location.state.from
@@ -24,6 +25,7 @@ const UserSignIn = () => {
             password: password.current.value
         }
 
+        // use user credentials to attempt sign in
         try {
             const user = await actions.signIn(credentials)
             if (user) { 
