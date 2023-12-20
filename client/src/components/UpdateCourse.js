@@ -63,8 +63,23 @@ const UpdateCourse = () => {
             userId: auth.id
         }
         console.log(courseInfo)
-        await api(`/courses/${id}`, "PUT", courseInfo, auth)
+
+        try {
+            const res = await api(`/courses/${id}`, "PUT", courseInfo, auth)
+            if (res.status === 200) {
+                const fetchedData = await res.json()
+                console.log(fetchedData.course)
+                setCourse(fetchedData.course)
+            } else if (res.status === 400) {
+                const errorInfo = await res.json()
+                setErrors(errorInfo.errors)
+                console.log(errorInfo.errors)
+            }
+        } catch (error) {
+            console.log("Error fetching and parsing data", error)
+            }
         }
+
 
     if (course) {
         return (
@@ -74,7 +89,7 @@ const UpdateCourse = () => {
                     <div className="validation--errors">
                         <h3>Validation Errors</h3>
                         <ul>
-                            {errors.map(error => <li>{error}</li>)}
+                            {errors.map(error => <li key={error}>{error}</li>)}
                         </ul>
                 </div> : null }
                     <form onSubmit={handleSubmit}>
